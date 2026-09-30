@@ -1,0 +1,2946 @@
+/* Dev-C++ Web Edition - Minimalist Pro Developer Theme */
+:root {
+  color-scheme: dark;
+
+  /* Modern Neutral Palette (Zed & VS Code Minimalist) */
+  --bg-base: #121214;
+  --bg-surface: #18181b;
+  --bg-elevated: #222226;
+  --bg-subtle: #27272c;
+  --bg-header: #141416;
+  --border-subtle: #27272a;
+  --border-strong: #3f3f46;
+
+  /* Crisp Typography Grayscale */
+  --text-main: #a1a1aa;
+  --text-bright: #f4f4f5;
+  --text-muted: #71717a;
+  --text-dim: #52525b;
+
+  /* Single Subtle Accent (No Rainbow Slop) */
+  --accent-primary: #3b82f6;
+  --accent-blue: #3b82f6;
+  --accent-emerald: #22c55e;
+  --accent-amber: #eab308;
+  --accent-rose: #ef4444;
+  --accent-purple: #8b5cf6;
+  --terminal-bg: #0d0d0f;
+  --titlebar-bg: #18181b;
+  --menubar-bg: #141416;
+  --toolbar-bg: #18181b;
+  --statusbar-bg: #141416;
+  --sidebar-bg: #18181b;
+
+  --font-family-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-family-code: "JetBrains Mono", Consolas, "Courier New", monospace;
+
+  /* Backward Compatibility Aliases */
+  --bg-primary: var(--bg-base);
+  --bg-secondary: var(--bg-surface);
+  --bg-tertiary: var(--bg-elevated);
+  --bg-toolbar: var(--bg-header);
+  --border-color: var(--border-subtle);
+  --accent-color: var(--accent-primary);
+  --accent-hover: #2563eb;
+  --accent-active: #1d4ed8;
+  --success-color: var(--accent-emerald);
+  --warning-color: var(--accent-amber);
+  --danger-color: var(--accent-rose);
+  --toolbar-btn-bg: var(--bg-elevated);
+  --toolbar-btn-hover: var(--bg-subtle);
+}
+
+/* Classic Dev-C++ 5.11 Retro Theme */
+body.theme-classic {
+  color-scheme: light;
+  --bg-base: #ffffff;
+  --bg-surface: #f0f0f0;
+  --bg-elevated: #e5f1fb;
+  --bg-subtle: #d0d0d0;
+  --bg-header: #f0f0f0;
+  --titlebar-bg: #f0f0f0;
+  --menubar-bg: #f0f0f0;
+  --toolbar-bg: #f0f0f0;
+  --statusbar-bg: #f0f0f0;
+  --sidebar-bg: #ffffff;
+  --border-subtle: #d0d0d0;
+  --border-strong: #979797;
+  --text-main: #000000;
+  --text-bright: #000000;
+  --text-muted: #555555;
+  --accent-primary: #0078d7;
+  --accent-blue: #0078d7;
+  --accent-emerald: #107c41;
+  --accent-amber: #d97706;
+  --accent-rose: #dc2626;
+  --terminal-bg: #000000;
+}
+
+/* Dracula Theme */
+body.theme-dracula {
+  color-scheme: dark;
+  --bg-base: #282a36;
+  --bg-surface: #21222c;
+  --bg-elevated: #44475a;
+  --bg-subtle: #343746;
+  --bg-header: #191a21;
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --text-main: #bfbfbf;
+  --text-bright: #f8f8f2;
+  --text-muted: #6272a4;
+  --accent-primary: #8be9fd;
+  --accent-blue: #bd93f9;
+  --accent-emerald: #50fa7b;
+  --accent-amber: #ffb86c;
+  --accent-rose: #ff5555;
+  --terminal-bg: #1e1f29;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-family-ui);
+  font-size: 13px;
+  background-color: var(--bg-base);
+  color: var(--text-main);
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Modern Minimalist Scrollbars */
+* {
+  scrollbar-color: #3f3f46 transparent;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+#app-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* ===================================================
+   1. Authentic Win32 Window Title Bar
+   =================================================== */
+.devcpp-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 28px;
+  min-height: 28px;
+  background-color: var(--titlebar-bg);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 10px;
+  user-select: none;
+  font-family: var(--font-family-ui);
+}
+
+.devcpp-title-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.devcpp-logo-badge {
+  background: #0078d7;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 2px;
+  letter-spacing: -0.5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.devcpp-title-text {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-bright);
+}
+
+.devcpp-title-controls {
+  display: flex;
+  height: 100%;
+}
+
+.win-btn {
+  width: 42px;
+  height: 100%;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+
+.win-btn:hover {
+  background: rgba(128, 128, 128, 0.2);
+  color: var(--text-bright);
+}
+
+.win-btn.win-close:hover {
+  background: #e81123;
+  color: #ffffff;
+}
+
+/* ===================================================
+   2. Authentic Dev-C++ Win32 Menu Bar
+   =================================================== */
+.devcpp-menubar {
+  display: flex;
+  align-items: center;
+  height: 24px;
+  min-height: 24px;
+  background-color: var(--menubar-bg);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 4px;
+  font-size: 12px;
+  user-select: none;
+  z-index: 100;
+  position: relative;
+}
+
+.menu-item-wrap {
+  position: relative;
+}
+
+.menu-item {
+  padding: 2px 7px;
+  cursor: pointer;
+  border-radius: 2px;
+  color: var(--text-bright);
+  font-size: 12px;
+  border: 1px solid transparent;
+  display: inline-block;
+}
+
+.menu-item:hover,
+.menu-item-wrap.open .menu-item {
+  background-color: var(--bg-elevated);
+  border-color: #70c0e7;
+  color: var(--text-bright);
+}
+
+body.theme-classic .menu-item:hover,
+body.theme-classic .menu-item-wrap.open .menu-item {
+  background-color: #e5f1fb;
+  border-color: #70c0e7;
+  color: #000000;
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.25);
+  min-width: 220px;
+  display: none;
+  flex-direction: column;
+  padding: 2px 0;
+  z-index: 1000;
+}
+
+body.theme-classic .menu-dropdown {
+  background-color: #f0f0f0;
+  border: 1px solid #979797;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.menu-item-wrap.open .menu-dropdown {
+  display: flex;
+}
+
+.menu-row {
+  display: flex;
+  align-items: center;
+  padding: 4px 12px 4px 28px;
+  position: relative;
+  font-size: 12px;
+  color: var(--text-bright);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+body.theme-classic .menu-row {
+  color: #000000;
+}
+
+.menu-row > i,
+.menu-row > span.devcpp-compile-quad {
+  position: absolute;
+  left: 8px;
+  width: 14px;
+  text-align: center;
+}
+
+.menu-row span {
+  flex: 1;
+}
+
+.menu-row kbd {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: var(--font-family-ui);
+  margin-left: 20px;
+}
+
+.menu-row:hover {
+  background-color: var(--accent-primary);
+  color: #ffffff;
+}
+
+body.theme-classic .menu-row:hover {
+  background-color: #91c9f7;
+  color: #000000;
+}
+
+body.theme-classic .menu-row:hover kbd {
+  color: #222222;
+}
+
+.menu-divider {
+  height: 1px;
+  background-color: var(--border-subtle);
+  margin: 3px 2px;
+}
+
+body.theme-classic .menu-divider {
+  background-color: #d0d0d0;
+  border-bottom: 1px solid #ffffff;
+}
+
+/* ===================================================
+   3. Authentic Dual Dev-C++ Toolbars
+   =================================================== */
+.devcpp-toolbar-container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--toolbar-bg);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 2px 6px;
+  gap: 2px;
+  user-select: none;
+}
+
+.tb-row {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 28px;
+}
+
+.tb-btn {
+  height: 24px;
+  padding: 0 6px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: var(--text-bright);
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.tb-btn:hover:not(:disabled) {
+  background-color: var(--bg-elevated);
+  border-color: var(--border-strong);
+  color: var(--text-bright);
+}
+
+body.theme-classic .tb-btn:hover:not(:disabled) {
+  background-color: #e5f1fb;
+  border-color: #70c0e7;
+  color: #000000;
+}
+
+.tb-btn:active:not(:disabled) {
+  background-color: var(--bg-subtle);
+}
+
+body.theme-classic .tb-btn:active:not(:disabled) {
+  background-color: #cce8ff;
+  border-color: #99d1ff;
+}
+
+.tb-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.btn-shortcut {
+  font-size: 10px;
+  opacity: 0.75;
+  font-family: var(--font-family-ui);
+}
+
+/* Iconic 4-Color Quad Grid for Compile (Bloodshed / Orwell Dev-C++) */
+.devcpp-compile-quad {
+  display: inline-grid;
+  grid-template-columns: 6px 6px;
+  grid-template-rows: 6px 6px;
+  gap: 1.5px;
+  width: 13.5px;
+  height: 13.5px;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.devcpp-compile-quad .q-blue {
+  background-color: #00a2ed;
+}
+
+.devcpp-compile-quad .q-red {
+  background-color: #ed1c24;
+}
+
+.devcpp-compile-quad .q-yellow {
+  background-color: #ffc90e;
+}
+
+.devcpp-compile-quad .q-green {
+  background-color: #22b14c;
+}
+
+.tb-separator {
+  width: 2px;
+  height: 18px;
+  border-left: 1px solid var(--border-subtle);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 0 3px;
+  display: inline-block;
+}
+
+body.theme-classic .tb-separator {
+  border-left: 1px solid #a0a0a0;
+  border-right: 1px solid #ffffff;
+}
+
+/* Combo boxes (Clean, smooth, modern Dev-C++ controls) */
+.devcpp-combo {
+  height: 25px;
+  background-color: var(--bg-surface);
+  color: var(--text-bright);
+  border: 1px solid var(--border-strong);
+  border-radius: 3px;
+  padding: 2px 24px 2px 8px;
+  font-size: 11.5px;
+  font-family: inherit;
+  font-weight: 500;
+  line-height: 21px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 7px center;
+  background-size: 11px 11px;
+  transition: border-color 0.18s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.18s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.18s ease;
+}
+
+body.theme-classic .devcpp-combo {
+  background-color: #ffffff;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  color-scheme: light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='12' height='12'%3E%3Cpath fill='%23475569' d='M4.427 6.427l3.396 3.396a.25.25 0 0 0 .354 0l3.396-3.396A.25.25 0 0 0 11.396 6H4.604a.25.25 0 0 0-.177.427z'/%3E%3C/svg%3E");
+}
+
+body.theme-classic .devcpp-combo:hover {
+  border-color: #94a3b8;
+  background-color: #f8fafc;
+}
+
+body.theme-classic .devcpp-combo:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+body:not(.theme-classic) .devcpp-combo {
+  background-color: #27272a;
+  color: #f4f4f5;
+  border: 1px solid #3f3f46;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  color-scheme: dark;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='12' height='12'%3E%3Cpath fill='%23a1a1aa' d='M4.427 6.427l3.396 3.396a.25.25 0 0 0 .354 0l3.396-3.396A.25.25 0 0 0 11.396 6H4.604a.25.25 0 0 0-.177.427z'/%3E%3C/svg%3E");
+}
+
+body:not(.theme-classic) .devcpp-combo:hover {
+  border-color: #71717a;
+  background-color: #2f2f32;
+}
+
+body:not(.theme-classic) .devcpp-combo:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.25);
+}
+
+/* Polished Option List Styling */
+.devcpp-combo option {
+  padding: 6px 10px;
+  font-size: 12px;
+  font-family: inherit;
+  font-weight: normal;
+}
+
+body.theme-classic .devcpp-combo option {
+  background-color: #ffffff;
+  color: #1e293b;
+}
+
+body.theme-classic .devcpp-combo option:checked {
+  background-color: #2563eb;
+  color: #ffffff;
+}
+
+body:not(.theme-classic) .devcpp-combo option {
+  background-color: #242427;
+  color: #f4f4f5;
+}
+
+body:not(.theme-classic) .devcpp-combo option:checked {
+  background-color: #1d4ed8;
+  color: #ffffff;
+}
+
+#select-compiler {
+  min-width: 210px;
+  max-width: 275px;
+}
+
+#select-template {
+  min-width: 190px;
+  max-width: 260px;
+}
+
+#select-theme {
+  min-width: 140px;
+}
+
+#select-language {
+  min-width: 140px;
+}
+
+#select-fontsize {
+  width: 72px;
+  min-width: 72px;
+}
+
+/* ===================================================
+   Custom Sleek Dropdown Menu Component (.devcpp-combo-menu)
+   Clean, Smooth, Floating Win32-Modern Menu
+   =================================================== */
+.devcpp-combo-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.devcpp-combo-wrapper.open .devcpp-combo {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 2.5px rgba(37, 99, 235, 0.22) !important;
+}
+
+body:not(.theme-classic) .devcpp-combo-wrapper.open .devcpp-combo {
+  border-color: #60a5fa !important;
+  box-shadow: 0 0 0 2.5px rgba(96, 165, 250, 0.25) !important;
+}
+
+.devcpp-combo-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 100%;
+  width: max-content;
+  max-width: 360px;
+  max-height: 320px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 6px;
+  padding: 4px;
+  z-index: 2500;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-5px) scale(0.98);
+  pointer-events: none;
+  transition: opacity 0.16s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.16s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.16s;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+}
+
+body.theme-classic .devcpp-combo-menu {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.18), 0 8px 10px -6px rgba(0, 0, 0, 0.08);
+}
+
+body:not(.theme-classic) .devcpp-combo-menu {
+  background: #242427;
+  border: 1px solid #3f3f46;
+  box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.55), 0 8px 12px -6px rgba(0, 0, 0, 0.45);
+}
+
+body.theme-dracula .devcpp-combo-menu {
+  background: #282a36;
+  border: 1px solid #6272a4;
+  box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.65);
+}
+
+.devcpp-combo-wrapper.open .devcpp-combo-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Individual Dropdown Item */
+.devcpp-combo-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-family: var(--font-family-ui);
+  line-height: 18px;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: background-color 0.12s ease, color 0.12s ease;
+  box-sizing: border-box;
+}
+
+.devcpp-combo-item .combo-item-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+.devcpp-combo-item .combo-item-check.hidden {
+  visibility: hidden;
+}
+
+.devcpp-combo-item .combo-item-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Classic theme item styling */
+body.theme-classic .devcpp-combo-item {
+  color: #1e293b;
+}
+
+body.theme-classic .devcpp-combo-item:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+body.theme-classic .devcpp-combo-item.selected {
+  background-color: #0078d7;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+body.theme-classic .devcpp-combo-item.selected:hover {
+  background-color: #006cc1;
+  color: #ffffff;
+}
+
+body.theme-classic .devcpp-combo-item.selected .combo-item-check {
+  color: #ffffff;
+}
+
+/* Dark theme item styling */
+body:not(.theme-classic) .devcpp-combo-item {
+  color: #e4e4e7;
+}
+
+body:not(.theme-classic) .devcpp-combo-item:hover {
+  background-color: #333338;
+  color: #ffffff;
+}
+
+body:not(.theme-classic) .devcpp-combo-item.selected {
+  background-color: #2563eb;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+body:not(.theme-classic) .devcpp-combo-item.selected:hover {
+  background-color: #1d4ed8;
+  color: #ffffff;
+}
+
+body:not(.theme-classic) .devcpp-combo-item.selected .combo-item-check {
+  color: #ffffff;
+}
+
+/* ===================================================
+   4. Authentic Dev-C++ Project / Classes Sidebar
+   =================================================== */
+.devcpp-sidebar {
+  width: 190px;
+  min-width: 120px;
+  max-width: 450px;
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  user-select: none;
+}
+
+.devcpp-sidebar.collapsed {
+  display: none;
+}
+
+.sidebar-tab-bar {
+  display: flex;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  height: 24px;
+  padding: 2px 4px 0 4px;
+  gap: 2px;
+}
+
+body.theme-classic .sidebar-tab-bar {
+  background-color: #f0f0f0;
+}
+
+.sidebar-tab {
+  padding: 2px 10px;
+  font-size: 11px;
+  border: 1px solid transparent;
+  border-bottom: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  border-radius: 2px 2px 0 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.sidebar-tab.active {
+  background-color: var(--sidebar-bg);
+  border-color: var(--border-subtle);
+  color: var(--text-bright);
+  font-weight: 600;
+  position: relative;
+  top: 1px;
+}
+
+body.theme-classic .sidebar-tab.active {
+  background-color: #ffffff;
+  border-color: #d0d0d0;
+  color: #000000;
+}
+
+.project-tree {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px 4px;
+  font-size: 12px;
+}
+
+.tree-node {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 6px;
+  cursor: pointer;
+  border-radius: 2px;
+  color: var(--text-bright);
+}
+
+.tree-node.child-node {
+  padding-left: 22px;
+}
+
+.tree-node.active {
+  background-color: #0078d7;
+  color: #ffffff;
+}
+
+.tree-node.active i {
+  color: #ffffff !important;
+}
+
+.splitter-sidebar {
+  width: 3px;
+  background-color: var(--border-subtle);
+  cursor: col-resize;
+  position: relative;
+  z-index: 20;
+}
+
+.splitter-sidebar:hover,
+.splitter-sidebar.dragging {
+  background-color: #0078d7;
+}
+
+/* 3. Main Workspace Split Layout */
+.devcpp-workspace {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--bg-base);
+}
+
+.pane {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.devcpp-workspace-center {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-base);
+  min-width: 0;
+}
+
+.left-pane {
+  flex: 1;
+  width: 100%;
+  border-right: none;
+  background-color: var(--bg-base);
+}
+
+.editor-pane {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 120px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.splitter-bottom {
+  height: 4px;
+  min-height: 4px;
+  background-color: var(--border-subtle);
+  cursor: row-resize;
+  transition: background-color 0.15s ease;
+  position: relative;
+  z-index: 20;
+  flex-shrink: 0;
+}
+
+.splitter-bottom:hover, .splitter-bottom.dragging {
+  background-color: var(--accent-primary);
+}
+
+.devcpp-bottom-dock {
+  flex: none !important; /* CRITICAL: Prevents .right-pane { flex: 1; } from overriding dock height */
+  height: 220px;
+  min-height: 32px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--bg-base);
+  border-top: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.devcpp-bottom-dock.collapsed {
+  height: 32px !important;
+  flex: none !important;
+}
+
+.devcpp-bottom-dock.collapsed .dock-panels-wrapper {
+  display: none !important;
+}
+
+.splitter {
+  width: 3px;
+  background-color: var(--border-subtle);
+  cursor: col-resize;
+  transition: background-color 0.15s ease;
+  position: relative;
+  z-index: 20;
+}
+
+.splitter:hover, .splitter.dragging {
+  background-color: var(--accent-primary);
+}
+
+.right-pane {
+  flex: 1;
+  min-width: 280px;
+  background-color: var(--bg-base);
+}
+
+/* 4. Tab Bars (Editor & Right Panel) */
+.tab-bar {
+  display: flex;
+  background-color: var(--bg-header);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow-x: auto;
+  height: 32px;
+  min-height: 32px;
+  align-items: center;
+  padding: 0 4px;
+  gap: 2px;
+}
+
+.tab-list {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+  flex: 1;
+  height: 100%;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  height: 100%;
+  background: transparent;
+  color: var(--text-muted);
+  border-right: 1px solid var(--border-subtle);
+  border-top: 2px solid transparent;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 400;
+  transition: color 0.12s ease, background-color 0.12s ease;
+  white-space: nowrap;
+}
+
+.tab:hover {
+  color: var(--text-bright);
+  background-color: var(--bg-surface);
+}
+
+.tab.active {
+  background-color: var(--bg-base);
+  color: var(--text-bright);
+  border-top: 2px solid var(--accent-primary);
+  font-weight: 500;
+}
+
+.tab .tab-name {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tab .tab-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  margin-left: 2px;
+  border-radius: 3px;
+  font-size: 10px;
+  color: var(--text-muted);
+  opacity: 0.6;
+  transition: opacity 0.12s ease, color 0.12s ease;
+}
+
+.tab .tab-close:hover {
+  color: #ef4444;
+  opacity: 1;
+}
+
+body.theme-classic .tab-bar {
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #d0d0d0;
+  height: 28px;
+  min-height: 28px;
+  padding: 3px 6px 0 6px;
+}
+
+body.theme-classic .tab {
+  height: 25px;
+  background-color: #e4e4e4;
+  color: #333333;
+  border: 1px solid #d0d0d0;
+  border-radius: 3px 3px 0 0;
+  margin-right: 2px;
+  font-size: 11px;
+}
+
+body.theme-classic .tab:hover {
+  background-color: #ececec;
+  color: #000000;
+}
+
+body.theme-classic .tab.active {
+  background-color: #ffffff;
+  color: #000000;
+  border-bottom-color: #ffffff;
+  font-weight: 600;
+  position: relative;
+  top: 1px;
+}
+
+.btn-tab-add {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 3px;
+  margin: 0 4px;
+  transition: all 0.12s ease;
+}
+
+.btn-tab-add:hover {
+  background-color: var(--bg-elevated);
+  border-color: var(--border-subtle);
+  color: var(--text-bright);
+}
+
+.tab-badge {
+  font-size: 10px;
+  font-weight: 500;
+  font-family: var(--font-family-code);
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+}
+
+.tab-badge.passed {
+  background: #14291e;
+  color: #4ade80;
+  border: 1px solid #1e4531;
+}
+
+.tab-badge.failed {
+  background: #2d1618;
+  color: #f87171;
+  border: 1px solid #4d2024;
+}
+
+/* 5. Editor Container */
+.editor-container {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: var(--bg-base);
+}
+
+#monaco-editor {
+  width: 100%;
+  height: 100%;
+}
+
+/* 6. Right Panel Contents */
+.panel-content {
+  display: none;
+  flex: 1;
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--bg-base);
+}
+
+.panel-content.active {
+  display: flex;
+}
+
+/* 6.1 Terminal / Console */
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+  min-height: 30px;
+  background-color: var(--bg-header);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 8px;
+  gap: 8px;
+}
+
+.terminal-bar-left, .terminal-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.term-status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: transparent;
+  padding: 0;
+}
+
+.status-pulse-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #52525b;
+  display: inline-block;
+}
+
+.term-status-chip.ready .status-pulse-dot {
+  background-color: var(--accent-emerald);
+}
+
+.term-status-chip.running {
+  color: var(--accent-primary);
+}
+
+.term-status-chip.running .status-pulse-dot {
+  background-color: var(--accent-primary);
+}
+
+.term-status-chip.waiting {
+  color: var(--accent-amber);
+}
+
+.term-status-chip.waiting .status-pulse-dot {
+  background-color: var(--accent-amber);
+}
+
+.btn-subtle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-family: inherit;
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.btn-subtle:hover {
+  background-color: var(--bg-elevated);
+  color: var(--text-bright);
+  border-color: var(--border-strong);
+}
+
+.terminal-wrapper {
+  flex: 1;
+  width: 100%;
+  height: calc(100% - 30px);
+  background-color: var(--terminal-bg);
+  padding: 6px;
+  overflow: hidden;
+  position: relative;
+  cursor: text;
+}
+
+#xterm-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* Hidden bridge for background compatibility */
+.hidden-bridge {
+  display: none !important;
+}
+
+.terminal-actions-left {
+  display: flex;
+  align-items: center;
+}
+
+.terminal-hint-tip {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.terminal-actions-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* 6.2 Custom Input Panel (STDIN) */
+.stdin-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 10px;
+  gap: 8px;
+  background-color: var(--bg-base);
+}
+
+.stdin-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.stdin-textarea {
+  flex: 1;
+  width: 100%;
+  background-color: var(--bg-surface);
+  color: var(--text-bright);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-family: var(--font-family-code);
+  font-size: 12px;
+  resize: none;
+  outline: none;
+  transition: border-color 0.12s ease;
+}
+
+.stdin-textarea:focus {
+  border-color: var(--border-strong);
+}
+
+/* 6.3 Testcases Panel */
+.testcases-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  gap: 8px;
+  background-color: var(--bg-base);
+}
+
+.testcases-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.test-summary {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-bright);
+}
+
+.testcase-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.testcase-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.12s ease;
+}
+
+.testcase-card.passed {
+  border-color: #1e4531;
+}
+
+.testcase-card.failed {
+  border-color: #4d2024;
+}
+
+.testcase-card.running {
+  border-color: var(--accent-primary);
+}
+
+.testcase-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 10px;
+  background-color: var(--bg-elevated);
+  font-weight: 500;
+  font-size: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.testcase-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-bright);
+}
+
+.badge-status {
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 500;
+  font-family: var(--font-family-code);
+}
+
+.badge-status.ac {
+  background: #14291e;
+  color: #4ade80;
+  border: 1px solid #1e4531;
+}
+
+.badge-status.wa {
+  background: #2d1618;
+  color: #f87171;
+  border: 1px solid #4d2024;
+}
+
+.badge-status.rte {
+  background: #2d2212;
+  color: #fbbf24;
+  border: 1px solid #4d381c;
+}
+
+.badge-status.pending {
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+}
+
+.testcase-body {
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.io-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.io-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.io-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.io-box {
+  width: 100%;
+  height: 55px;
+  background-color: var(--bg-base);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-bright);
+  font-family: var(--font-family-code);
+  font-size: 11px;
+  padding: 5px 7px;
+  border-radius: 3px;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.12s ease;
+}
+
+.io-box:focus {
+  border-color: var(--border-strong);
+}
+
+.actual-box {
+  background-color: var(--bg-base);
+  border: 1px solid var(--border-subtle);
+  padding: 5px 7px;
+  font-family: var(--font-family-code);
+  font-size: 11px;
+  border-radius: 3px;
+  min-height: 28px;
+  max-height: 100px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  color: var(--text-bright);
+}
+
+/* 6.4 Compiler Log */
+.compiler-log-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  padding: 8px;
+  background-color: var(--bg-base);
+  gap: 6px;
+}
+
+.log-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.log-table th {
+  text-align: left;
+  padding: 5px 8px;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.log-table td {
+  padding: 5px 8px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.log-row {
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+
+.log-row:hover {
+  background-color: var(--bg-elevated);
+}
+
+.log-row.error td {
+  color: #f87171;
+}
+
+.log-row.warning td {
+  color: #fbbf24;
+}
+
+.raw-log-output {
+  flex: 1;
+  background-color: #0c0c0e;
+  color: #f4f4f5 !important;
+  font-family: var(--font-family-code);
+  font-size: 12.5px;
+  line-height: 1.55;
+  padding: 10px 14px;
+  border-radius: 2px;
+  border: 1px solid var(--border-subtle);
+  overflow-y: auto;
+  white-space: pre-wrap;
+  user-select: text;
+  letter-spacing: 0.2px;
+}
+
+body.theme-classic .raw-log-output {
+  background-color: #ffffff !important;
+  color: #111111 !important;
+  border: 1px solid #c0c0c0 !important;
+  font-family: var(--font-family-code);
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+/* 7. Authentic Sunken Beveled Dev-C++ Status Bar */
+.devcpp-statusbar {
+  display: flex;
+  align-items: center;
+  background-color: var(--statusbar-bg);
+  border-top: 1px solid var(--border-subtle);
+  height: 22px;
+  min-height: 22px;
+  padding: 2px 4px;
+  gap: 3px;
+  font-size: 11px;
+  color: var(--text-muted);
+  user-select: none;
+  z-index: 50;
+}
+
+.status-panel {
+  height: 18px;
+  display: flex;
+  align-items: center;
+  padding: 0 6px;
+  border: 1px solid var(--border-strong);
+  white-space: nowrap;
+  font-size: 11px;
+  background: var(--bg-surface);
+  color: var(--text-bright);
+}
+
+body.theme-classic .status-panel {
+  background: #f0f0f0;
+  color: #000000;
+  border: 1px solid #b0b0b0;
+  box-shadow: inset 1px 1px 0px #808080, inset -1px -1px 0px #ffffff;
+}
+
+.status-panel-msg {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.status-panel-pos {
+  min-width: 105px;
+}
+
+.status-panel-path {
+  min-width: 100px;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  direction: rtl; /* Shows filename first if path is long */
+  text-align: left;
+}
+
+.status-panel-encoding {
+  min-width: 55px;
+  justify-content: center;
+}
+
+.status-panel-lines {
+  min-width: 65px;
+}
+
+.status-panel-length {
+  min-width: 75px;
+}
+
+.status-panel-mode {
+  min-width: 65px;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.status-panel-mode:hover {
+  background: #e0e0e0;
+}
+
+body.theme-classic .status-panel-mode:hover {
+  background: #e8e8e8;
+}
+
+.status-panel-mode.overwrite {
+  color: #c00000;
+  font-weight: bold;
+}
+
+.status-panel-rw {
+  min-width: 80px;
+  justify-content: center;
+}
+
+.status-panel-compiler {
+  min-width: 140px;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #52525b;
+  flex-shrink: 0;
+}
+
+.status-dot.ready {
+  background-color: var(--accent-emerald);
+}
+
+.status-dot.busy {
+  background-color: var(--accent-amber);
+}
+
+.status-dot.error {
+  background-color: var(--accent-rose);
+}
+
+/* 8. Modal & Splash Screen */
+.splash-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(14, 14, 16, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.splash-box {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 24px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.splash-logo {
+  font-size: 32px;
+  color: var(--accent-primary);
+}
+
+.splash-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-bright);
+}
+
+.splash-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.progress-container {
+  width: 100%;
+  background-color: var(--bg-elevated);
+  border-radius: 3px;
+  height: 4px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background-color: var(--accent-primary);
+  transition: width 0.15s ease;
+}
+
+.splash-status {
+  font-size: 11px;
+  color: var(--text-main);
+  min-height: 14px;
+}
+
+/* ==========================================================================
+   VFS SIDEBAR, MINI-TOOLBAR, DYNAMIC TREE & WIN32 CONTEXT MENU
+   Authentic Bloodshed / Embarcadero Dev-C++ 5.11 UI Specification
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Sidebar Mini-Toolbar
+   -------------------------------------------------------------------------- */
+.sidebar-mini-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 4px;
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  height: 26px;
+  min-height: 26px;
+  box-sizing: border-box;
+}
+
+body.theme-classic .sidebar-mini-toolbar {
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.sb-tb-btn {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 11px;
+  padding: 0;
+  transition: all 0.1s ease;
+}
+
+.sb-tb-btn:hover {
+  background-color: var(--bg-elevated);
+  border-color: var(--border-strong);
+  color: var(--text-bright);
+}
+
+.sb-tb-btn:active {
+  background-color: var(--bg-subtle);
+  border-color: var(--accent-primary);
+}
+
+body.theme-classic .sb-tb-btn:hover {
+  background-color: #e5f1fb;
+  border-color: #70c0e7;
+  color: #000000;
+}
+
+body.theme-classic .sb-tb-btn:active {
+  background-color: #cce8ff;
+  border-color: #99d1ff;
+}
+
+.sb-tb-separator {
+  width: 1px;
+  height: 16px;
+  background-color: var(--border-subtle);
+  margin: 0 2px;
+}
+
+body.theme-classic .sb-tb-separator {
+  background-color: #d0d0d0;
+  border-right: 1px solid #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   2. Project Tree Container & Hierarchy
+   -------------------------------------------------------------------------- */
+.project-tree-container {
+  flex: 1;
+  overflow: auto;
+  position: relative;
+}
+
+.project-tree {
+  padding: 4px 2px;
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Tahoma, sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+  outline: none;
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.tree-node-row {
+  display: flex;
+  align-items: center;
+  height: 22px;
+  padding: 1px 4px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  white-space: nowrap;
+  user-select: none;
+  color: var(--text-bright);
+}
+
+.tree-node-row:hover:not(.selected) {
+  background-color: var(--bg-elevated);
+}
+
+body.theme-classic .tree-node-row:hover:not(.selected) {
+  background-color: #f2f7fc;
+}
+
+/* Selected Node (Focused / Active Selection - Win32 Solid Blue) */
+.tree-node-row.selected,
+body.theme-classic .tree-node-row.selected {
+  background-color: #0078d7 !important;
+  color: #ffffff !important;
+}
+
+.tree-node-row.selected .tree-node-label,
+.tree-node-row.selected .tree-node-icon,
+.tree-node-row.selected i,
+body.theme-classic .tree-node-row.selected .tree-node-label,
+body.theme-classic .tree-node-row.selected .tree-node-icon,
+body.theme-classic .tree-node-row.selected i {
+  color: #ffffff !important;
+}
+
+.tree-node-row.selected:hover,
+body.theme-classic .tree-node-row.selected:hover {
+  background-color: #006cc1 !important;
+  color: #ffffff !important;
+}
+
+.tree-node-row.selected .unit-badge {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+/* Inactive selection when tree loses focus */
+.project-tree:not(:focus-within) .tree-node-row.selected {
+  background-color: var(--bg-elevated) !important;
+  color: var(--text-bright) !important;
+}
+
+.project-tree:not(:focus-within) .tree-node-row.selected .tree-node-label {
+  color: var(--text-bright) !important;
+}
+
+body.theme-classic .project-tree:not(:focus-within) .tree-node-row.selected {
+  background-color: #e5ebf1 !important;
+  color: #111111 !important;
+}
+
+body.theme-classic .project-tree:not(:focus-within) .tree-node-row.selected .tree-node-label {
+  color: #111111 !important;
+}
+
+body.theme-classic .project-tree:not(:focus-within) .tree-node-row.selected .tree-node-icon,
+body.theme-classic .project-tree:not(:focus-within) .tree-node-row.selected i {
+  color: #0078d7 !important;
+}
+
+body:not(.theme-classic) .project-tree:not(:focus-within) .tree-node-row.selected {
+  background-color: #333338 !important;
+  color: #e4e4e7 !important;
+}
+
+body:not(.theme-classic) .project-tree:not(:focus-within) .tree-node-row.selected .tree-node-label,
+body:not(.theme-classic) .project-tree:not(:focus-within) .tree-node-row.selected i {
+  color: #e4e4e7 !important;
+}
+
+/* Tree Expander Chevron */
+.tree-expander {
+  width: 14px;
+  height: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-right: 2px;
+  color: var(--text-muted);
+  font-size: 9px;
+  transition: transform 0.12s ease;
+}
+
+.tree-expander:hover {
+  color: var(--text-bright);
+}
+
+.tree-expander.empty {
+  visibility: hidden;
+}
+
+.tree-expander.expanded {
+  transform: rotate(90deg);
+}
+
+/* Node Icons */
+.tree-node-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 6px;
+  flex-shrink: 0;
+  font-size: 12px;
+}
+
+/* Icon Color Standards */
+.tree-node-icon.icon-project { color: #0078d7; font-size: 13px; }
+.tree-node-icon.icon-folder { color: #dcb67a; }
+.tree-node-icon.icon-folder-open { color: #e5c07b; }
+.tree-node-icon.icon-cpp { color: #0078d7; }
+.tree-node-icon.icon-c { color: #0284c7; }
+.tree-node-icon.icon-header { color: #d97706; }
+.tree-node-icon.icon-text { color: #64748b; }
+
+/* Node Label & Path */
+.tree-node-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Excluded Project Unit State */
+.tree-node-row.unit-excluded .tree-node-label {
+  opacity: 0.6;
+  font-style: italic;
+  text-decoration: line-through;
+}
+
+.tree-node-row.unit-excluded .tree-node-icon {
+  opacity: 0.6;
+}
+
+/* Project Unit Indicators / Badges */
+.unit-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  margin-left: 6px;
+  padding: 0 3px;
+  border-radius: 2px;
+  height: 14px;
+  flex-shrink: 0;
+  font-weight: 600;
+}
+
+.unit-badge.unit-badge-ok {
+  color: #107c41;
+  background-color: rgba(16, 124, 65, 0.12);
+}
+
+.unit-badge.unit-badge-excluded {
+  color: #dc2626;
+  background-color: rgba(220, 38, 38, 0.15);
+  font-size: 8px;
+}
+
+/* Active File Tab Marker */
+.tree-node-row.is-active-tab {
+  font-weight: 600;
+}
+
+.tree-node-row.is-active-tab::after {
+  content: "•";
+  margin-left: 4px;
+  color: #0078d7;
+  font-size: 14px;
+}
+
+.tree-node-row.selected.is-active-tab::after {
+  color: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   3. Win32 Right-Click Context Menu
+   -------------------------------------------------------------------------- */
+.win32-context-menu {
+  position: fixed;
+  z-index: 10000;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.35);
+  padding: 2px 0;
+  min-width: 220px;
+  max-width: 320px;
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Tahoma, sans-serif;
+  font-size: 12px;
+  user-select: none;
+  border-radius: 2px;
+}
+
+body.theme-classic .win32-context-menu {
+  background-color: #f0f0f0;
+  border: 1px solid #979797;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.35);
+}
+
+.win32-menu-item {
+  display: flex;
+  align-items: center;
+  height: 24px;
+  padding: 0 10px 0 28px;
+  position: relative;
+  cursor: pointer;
+  color: var(--text-bright);
+  white-space: nowrap;
+}
+
+.win32-menu-item:hover {
+  background-color: var(--bg-elevated);
+  color: var(--text-bright);
+}
+
+body.theme-classic .win32-menu-item {
+  color: #000000;
+}
+
+body.theme-classic .win32-menu-item:hover {
+  background-color: #e5f1fb;
+  color: #000000;
+}
+
+.win32-menu-item.disabled {
+  opacity: 0.45;
+  cursor: default;
+  pointer-events: none;
+}
+
+.win32-menu-item-icon {
+  position: absolute;
+  left: 6px;
+  width: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.win32-menu-item:hover .win32-menu-item-icon {
+  color: var(--text-bright);
+}
+
+body.theme-classic .win32-menu-item-icon {
+  color: #444444;
+}
+
+body.theme-classic .win32-menu-item:hover .win32-menu-item-icon {
+  color: #0078d7;
+}
+
+.win32-menu-item-text {
+  flex: 1;
+}
+
+.win32-menu-item-shortcut {
+  margin-left: 16px;
+  font-size: 10px;
+  opacity: 0.65;
+}
+
+.win32-menu-check {
+  position: absolute;
+  left: 6px;
+  width: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #0078d7;
+  font-size: 11px;
+}
+
+.win32-menu-separator {
+  height: 1px;
+  background-color: var(--border-subtle);
+  margin: 3px 2px 3px 26px;
+}
+
+body.theme-classic .win32-menu-separator {
+  background-color: #e0e0e0;
+  border-bottom: 1px solid #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   4. Win32 Dialogs & Overlays (Project Options & Input Box)
+   -------------------------------------------------------------------------- */
+.win32-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.win32-dialog-box {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  width: 460px;
+  max-width: 90vw;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Tahoma, sans-serif;
+  font-size: 12px;
+}
+
+body.theme-classic .win32-dialog-box {
+  background-color: #f0f0f0;
+  border: 1px solid #0055ea;
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.win32-dialog-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 28px;
+  padding: 0 8px;
+  background-color: var(--bg-header);
+  border-bottom: 1px solid var(--border-subtle);
+  user-select: none;
+}
+
+body.theme-classic .win32-dialog-titlebar {
+  background-color: #0078d7;
+  color: #ffffff;
+  border-bottom: none;
+}
+
+.win32-dialog-title-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+body.theme-classic .win32-dialog-title-left i {
+  color: #ffffff !important;
+}
+
+.win32-dialog-close {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  width: 24px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 11px;
+}
+
+.win32-dialog-close:hover {
+  background-color: #e81123;
+  color: #ffffff;
+}
+
+body.theme-classic .win32-dialog-close {
+  color: #ffffff;
+}
+
+.win32-dialog-body {
+  padding: 12px;
+  flex: 1;
+}
+
+.win32-dialog-tabs {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.win32-tab-btn {
+  padding: 4px 12px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: none;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--text-muted);
+  border-radius: 2px 2px 0 0;
+}
+
+.win32-tab-btn.active {
+  background-color: var(--bg-surface);
+  border-color: var(--border-subtle);
+  color: var(--text-bright);
+  font-weight: 600;
+  position: relative;
+  top: 1px;
+}
+
+body.theme-classic .win32-tab-btn.active {
+  background-color: #f0f0f0;
+  border-color: #979797;
+  color: #000000;
+}
+
+.win32-tab-pane {
+  display: none;
+}
+
+.win32-tab-pane.active {
+  display: block;
+}
+
+.win32-fieldset {
+  border: 1px solid var(--border-subtle);
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 8px;
+}
+
+body.theme-classic .win32-fieldset {
+  border: 1px solid #d0d0d0;
+  background-color: #ffffff;
+}
+
+.win32-fieldset legend {
+  padding: 0 4px;
+  font-weight: 600;
+  color: var(--accent-primary);
+}
+
+.win32-form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.win32-form-row label {
+  width: 130px;
+  flex-shrink: 0;
+  color: var(--text-bright);
+}
+
+body.theme-classic .win32-form-row label {
+  color: #000000;
+}
+
+.win32-input, .win32-select {
+  flex: 1;
+  height: 25px;
+  padding: 2px 8px;
+  background-color: var(--bg-base);
+  border: 1px solid var(--border-strong);
+  color: var(--text-bright);
+  font-size: 12px;
+  font-family: inherit;
+  border-radius: 3px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.win32-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 7px center;
+  background-size: 11px 11px;
+  padding-right: 24px;
+  cursor: pointer;
+}
+
+body.theme-classic .win32-input, body.theme-classic .win32-select {
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #1e293b;
+}
+
+body.theme-classic .win32-select {
+  color-scheme: light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='12' height='12'%3E%3Cpath fill='%23475569' d='M4.427 6.427l3.396 3.396a.25.25 0 0 0 .354 0l3.396-3.396A.25.25 0 0 0 11.396 6H4.604a.25.25 0 0 0-.177.427z'/%3E%3C/svg%3E");
+}
+
+body:not(.theme-classic) .win32-select {
+  color-scheme: dark;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='12' height='12'%3E%3Cpath fill='%23a1a1aa' d='M4.427 6.427l3.396 3.396a.25.25 0 0 0 .354 0l3.396-3.396A.25.25 0 0 0 11.396 6H4.604a.25.25 0 0 0-.177.427z'/%3E%3C/svg%3E");
+}
+
+.win32-input:focus, .win32-select:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px rgba(0, 120, 215, 0.2);
+}
+
+.win32-dialog-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+}
+
+body.theme-classic .win32-dialog-footer {
+  background-color: #f0f0f0;
+  border-top: 1px solid #d0d0d0;
+}
+
+.win32-btn {
+  min-width: 75px;
+  height: 24px;
+  padding: 0 12px;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  color: var(--text-bright);
+  font-size: 12px;
+  font-family: inherit;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.win32-btn:hover {
+  background-color: var(--bg-subtle);
+}
+
+body.theme-classic .win32-btn {
+  background-color: #e1e1e1;
+  border: 1px solid #adadad;
+  color: #000000;
+}
+
+body.theme-classic .win32-btn:hover {
+  background-color: #e5f1fb;
+  border-color: #0078d7;
+}
+
+.win32-btn.win32-btn-primary {
+  border-color: var(--accent-primary);
+  font-weight: 600;
+}
+
+body.theme-classic .win32-btn.win32-btn-primary {
+  border-color: #0078d7;
+}
+
+.win32-input-dialog {
+  width: 360px;
+}
+
+.win32-input-dialog .win32-dialog-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.win32-input-error {
+  color: #ef4444;
+  font-size: 11px;
+}
+
+/* --------------------------------------------------------------------------
+   5. Compiler Log Table File / Unit Column & Flash Highlights
+   -------------------------------------------------------------------------- */
+.log-table td.log-file {
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 11px;
+  color: var(--accent-color, #0078d7);
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.log-table tr.log-row {
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.log-table tr.log-row:hover {
+  background: rgba(0, 120, 215, 0.1) !important;
+}
+
+/* Flash Highlight when clicking diagnostic in Monaco Editor */
+.monaco-line-flash-highlight {
+  background: rgba(255, 235, 59, 0.35) !important;
+  border-top: 1px solid #ffd54f;
+  border-bottom: 1px solid #ffd54f;
+  animation: flashFade 1.8s ease-out forwards;
+}
+
+.monaco-line-flash-gutter {
+  background: #ffb300;
+  width: 4px !important;
+}
+
+@keyframes flashFade {
+  0% { background: rgba(255, 235, 59, 0.5); }
+  60% { background: rgba(255, 235, 59, 0.25); }
+  100% { background: transparent; }
+}
+
+/* ==========================================================================
+   6. Win32 Dev-C++ Bottom Dock Panel & Tabs
+   ========================================================================== */
+.dock-tab-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-header);
+  border-bottom: 1px solid var(--border-subtle);
+  height: 32px;
+  min-height: 32px;
+  padding: 0 4px;
+  user-select: none;
+  overflow: hidden;
+}
+
+.dock-tabs-left {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  overflow-x: auto;
+}
+
+.dock-tabs-right {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.btn-dock-ctrl {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 11px;
+}
+
+.btn-dock-ctrl:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-bright);
+  border-color: var(--border-subtle);
+}
+
+.dock-panels-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+  height: calc(100% - 32px);
+}
+
+.dock-panels-wrapper .panel-content {
+  display: none;
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+.dock-panels-wrapper .panel-content.active {
+  display: flex;
+}
+
+/* ==========================================================================
+   7. Error List & Compiler Log Tables & Toolbars
+   ========================================================================== */
+.error-list-container,
+.compiler-log-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background: var(--bg-base);
+  overflow: hidden;
+}
+
+.error-list-toolbar,
+.compiler-log-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 12px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 12px;
+  min-height: 32px;
+  flex-shrink: 0;
+}
+
+.error-list-summary,
+.compiler-log-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--text-bright);
+}
+
+.error-list-filters {
+  display: flex;
+  gap: 6px;
+}
+
+.error-list-table-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: auto;
+  background: var(--bg-base);
+}
+
+.error-list-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  table-layout: fixed;
+}
+
+.error-list-table th {
+  position: sticky;
+  top: 0;
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  font-size: 11.5px;
+  font-weight: 600;
+  text-align: left;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border-subtle);
+  z-index: 2;
+  user-select: none;
+}
+
+body.theme-classic .error-list-table th {
+  background: #f0f0f0;
+  color: #333333;
+  border-bottom: 1px solid #c0c0c0;
+}
+
+.error-list-table td {
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border-subtle);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  font-size: 12.5px;
+  color: var(--text-bright);
+}
+
+body.theme-classic .error-list-table td {
+  color: #111111;
+  background: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.error-list-table td.col-message {
+  white-space: normal;
+  word-break: break-word;
+}
+
+.error-list-table tr.clickable,
+.log-table tr.log-row {
+  cursor: pointer;
+  transition: background-color 0.1s ease;
+}
+
+.error-list-table tr.clickable:hover,
+.log-table tr.log-row:hover {
+  background: rgba(0, 120, 215, 0.15) !important;
+}
+
+/* Resources Panel & Win32 Grid Table */
+.resources-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 10px 14px;
+  overflow-y: auto;
+  background: var(--bg-base);
+  gap: 10px;
+}
+
+.resources-info-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-main);
+  padding: 4px 0;
+}
+
+body.theme-classic .resources-info-bar {
+  color: #222222;
+}
+
+.resources-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: 3px;
+  background: var(--bg-surface);
+}
+
+.win32-grid-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+}
+
+.win32-grid-table th {
+  background: var(--bg-elevated);
+  color: var(--text-main);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 8px 12px;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.win32-grid-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-bright);
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+body.theme-classic .win32-grid-table th {
+  background: linear-gradient(180deg, #f8f8f8 0%, #ececec 100%);
+  color: #222222;
+  border: 1px solid #c0c0c0;
+}
+
+body.theme-classic .win32-grid-table td {
+  border: 1px solid #dcdcdc;
+  color: #111111;
+  background: #ffffff;
+}
+
+.badge-status.error-badge {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.badge-status.warning-badge {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.badge-status.note-badge {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.compiler-log-jump-line {
+  cursor: pointer;
+  display: block;
+  padding: 1px 4px;
+  border-radius: 2px;
+  transition: background 0.12s ease;
+}
+
+.compiler-log-jump-line:hover {
+  background: rgba(255, 235, 59, 0.18);
+  text-decoration: underline;
+}
+
+.compiler-log-jump-line.error { color: #f87171; }
+.compiler-log-jump-line.warning { color: #fbbf24; }
+.compiler-log-jump-line.note { color: #60a5fa; }
+
+/* ==========================================================================
+   8. Win32 Pop-up cmd.exe Console Window Styling
+   ========================================================================== */
+.win32-cmd-window {
+  position: fixed;
+  z-index: 10000;
+  width: 680px;
+  height: 420px;
+  min-width: 380px;
+  min-height: 220px;
+  background-color: #000000;
+  border: 1px solid #4d4d4d;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(255, 255, 255, 0.1);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 4px 4px 0 0;
+  user-select: none;
+  top: calc(50% - 210px);
+  left: calc(50% - 340px);
+}
+
+body.theme-classic .win32-cmd-window {
+  border: 1px solid #0055ea;
+  box-shadow: 2px 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+.cmd-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+  min-height: 30px;
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+  padding: 0 4px 0 8px;
+  border-bottom: 1px solid #333333;
+  cursor: move;
+  user-select: none;
+}
+
+body.theme-classic .cmd-titlebar {
+  background-color: #ffffff;
+  color: #000000;
+  border-bottom: 1px solid #d0d0d0;
+}
+
+.cmd-title-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.cmd-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background-color: #000000;
+  border: 1px solid #666666;
+  border-radius: 2px;
+  color: #ffffff;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: -1px;
+}
+
+.cmd-title {
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cmd-title-right {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.cmd-title-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 26px;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+
+.cmd-title-btn:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+body.theme-classic .cmd-title-btn:hover {
+  background-color: #e5e5e5;
+}
+
+.cmd-title-btn.cmd-btn-close:hover {
+  background-color: #e81123 !important;
+  color: #ffffff !important;
+}
+
+.cmd-body {
+  flex: 1;
+  width: 100%;
+  height: calc(100% - 30px);
+  background-color: #000000 !important;
+  padding: 4px;
+  overflow: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.cmd-body .terminal-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: #000000 !important;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+#win32-cmd-window #xterm-container,
+#win32-cmd-window .xterm,
+#win32-cmd-window .xterm-screen,
+#win32-cmd-window .xterm-viewport {
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #000000 !important;
+}
+
+.cmd-resize-handle {
+  position: absolute;
+  z-index: 10001;
+}
+
+.cmd-resize-n { top: 0; left: 0; right: 0; height: 5px; cursor: n-resize; }
+.cmd-resize-s { bottom: 0; left: 0; right: 0; height: 5px; cursor: s-resize; }
+.cmd-resize-w { top: 0; bottom: 0; left: 0; width: 5px; cursor: w-resize; }
+.cmd-resize-e { top: 0; bottom: 0; right: 0; width: 5px; cursor: e-resize; }
+.cmd-resize-nw { top: 0; left: 0; width: 10px; height: 10px; cursor: nw-resize; }
+.cmd-resize-ne { top: 0; right: 0; width: 10px; height: 10px; cursor: ne-resize; }
+.cmd-resize-sw { bottom: 0; left: 0; width: 10px; height: 10px; cursor: sw-resize; }
+.cmd-resize-se { bottom: 0; right: 0; width: 10px; height: 10px; cursor: se-resize; }
+
+.win32-cmd-window.minimized {
+  height: 30px !important;
+  min-height: 30px !important;
+}
+
+.win32-cmd-window.minimized .cmd-body,
+.win32-cmd-window.minimized .cmd-resize-handle {
+  display: none !important;
+}
+
+.win32-cmd-window.maximized {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   Win32 Window Menu Styles (Feature F18)
+   -------------------------------------------------------------------------- */
+.menu-window-file-list {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.active-window-file {
+  font-weight: 600;
+  background-color: rgba(0, 120, 215, 0.08);
+}
+
+/* --------------------------------------------------------------------------
+   Win32 Modal Alert Dialog (Dev-C++ 5.11 MessageBox) - Feature F19
+   -------------------------------------------------------------------------- */
+.win32-alert-dialog {
+  width: 420px;
+  max-width: 90vw;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.win32-alert-body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+}
+
+.win32-alert-icon-col {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.win32-msgbox-icon-warning {
+  font-size: 32px;
+  color: #d97706;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.theme-classic .win32-msgbox-icon-warning {
+  color: #d97706;
+}
+
+.win32-alert-content-col {
+  flex: 1;
+}
+
+.win32-alert-message {
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-normal, #222222);
+  user-select: text;
+}
+
+body.theme-classic .win32-alert-message {
+  color: #000000;
+}
+
+.win32-alert-footer {
+  display: flex;
+  justify-content: center;
+  padding: 8px 12px 10px;
+}
+
+.win32-alert-footer .win32-btn {
+  min-width: 85px;
+}

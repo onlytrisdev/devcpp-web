@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dev-C++ Web Edition | Trình biên dịch C/C++ 100% Client-Side</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%232563eb%22/><text x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22 font-size=%2246%22 font-weight=%22bold%22 fill=%22white%22>C++</text></svg>">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- xterm.js Terminal CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm@5.3.0/css/xterm.min.css">
+  
+  <!-- App Styles -->
+  <link rel="stylesheet" href="css/style.css?v=2.1.0">
+</head>
+<body class="theme-classic">
+  <div id="app-container">
+    
+    <!-- 1. Authentic Win32 Window Title Bar -->
+    <div class="devcpp-titlebar">
+      <div class="devcpp-title-left">
+        <span class="devcpp-logo-badge">C++</span>
+        <span class="devcpp-title-text" id="devcpp-window-title">Dev-C++ 5.11 - [main.cpp]</span>
+      </div>
+    </div>
+
+    <!-- 2. Authentic Dev-C++ Win32 Menu Bar -->
+    <nav class="devcpp-menubar" id="devcpp-menubar">
+      <div class="menu-item-wrap">
+        <span class="menu-item" data-menu="menu-file" data-i18n="menu_file"><u>F</u>ile</span>
+        <div class="menu-dropdown" id="menu-file">
+          <div class="menu-row" id="m-new"><i class="fa-regular fa-file"></i> <span data-i18n="m_new"><u>N</u>ew Source File</span> <kbd>Ctrl+N</kbd></div>
+          <div class="menu-row" id="m-open"><i class="fa-regular fa-folder-open"></i> <span data-i18n="m_open"><u>O</u>pen...</span> <kbd>Ctrl+O</kbd></div>
+          <div class="menu-row" id="m-save"><i class="fa-regular fa-floppy-disk"></i> <span data-i18n="m_save"><u>S</u>ave</span> <kbd>Ctrl+S</kbd></div>
+          <div class="menu-row" id="m-save-all"><i class="fa-solid fa-floppy-disk"></i> <span data-i18n="m_save_all">Save <u>A</u>ll</span> <kbd>Ctrl+Shift+S</kbd></div>
+          <div class="menu-divider"></div>
+          <div class="menu-row" id="m-download"><i class="fa-solid fa-file-zipper"></i> <span data-i18n="m_download">Download Project (ZIP)</span></div>
+          <div class="menu-row" id="m-export-file"><i class="fa-solid fa-download"></i> <span data-i18n="m_export_file">Export Current File (.cpp)</span></div>
+        </div>
+      </div>
+
+      <div class="menu-item-wrap">
+        <span class="menu-item" data-menu="menu-edit" data-i18n="menu_edit"><u>E</u>dit</span>
+        <div class="menu-dropdown" id="menu-edit">
+          <div class="menu-row" id="m-undo"><i class="fa-solid fa-rotate-left"></i> <span data-i18n="m_undo"><u>U</u>ndo</span> <kbd>Ctrl+Z</kbd></div>
+          <div class="menu-row" id="m-redo"><i class="fa-solid fa-rotate-right"></i> <span data-i18n="m_redo"><u>R</u>edo</span> <kbd>Ctrl+Y</kbd></div>
+          <div class="menu-divider"></div>
+          <div class="menu-row" id="m-format"><i class="fa-solid fa-align-left"></i> <span data-i18n="m_format">Format Code (AStyle)</span> <kbd>Shift+Alt+F</kbd></div>
+        </div>
+      </div>
+
+      <div class="menu-item-wrap">
+        <span class="menu-item" data-menu="menu-search" data-i18n="menu_search"><u>S</u>earch</span>
+        <div class="menu-dropdown" id="menu-search">
+          <div class="menu-row" id="m-find"><i class="fa-solid fa-magnifying-glass"></i> <span data-i18n="m_find"><u>F</u>ind...</span> <kbd>Ctrl+F</kbd></div>
+        </div>
+      </div>
+
+      <div class="menu-item-wrap">
+        <span class="menu-item" data-menu="menu-view" data-i18n="menu_view"><u>V</u>iew</span>
+        <div class="menu-dropdown" id="menu-view">
+          <div class="menu-row" id="m-toggle-sidebar"><i class="fa-solid fa-bars"></i> <span data-i18n="m_toggle_sidebar">Toggle Project Manager</span></div>
+        </div>
+      </div>
+
+      <div class="menu-item-wrap">
+        <span class="menu-item" data-menu="menu-project" data-i18n="menu_project"><u>P</u>roject</span>
+        <div class="menu-dropdown" id="menu-project">
+          <div class="menu-row" id="m-proj-new"><i class="fa-solid fa-folder-plus"></i> <span data-i18n="m_proj_new"><u>N</u>ew Project...</span></div>
+          <div class="menu-row" id="m-proj-add"><i class="fa-solid fa-file-circle-plus"></i> <span data-i18n="m_proj_add"><u>A</u>dd to Project...</span></div>
+          <div class="menu-row" id="m-proj-remove"><i class="fa-solid fa-file-circle-minus"></i> <span data-i18n="m_proj_remove"><u>R</u>emove from Project...</span></div>
+          <div class="menu-divider"></div>
+          <div class="menu-row" id="m-proj-options"><i class="fa-solid fa-sliders"></i> <span data-i18n="m_proj_options">Project <u>O</u>ptions...</span></div>
+        </div>
+      </div>
+
+      <div class="menu-item-wrap">
+        <span class="menu-item" data-menu="menu-execute" data-i18n="menu_execute">E<u>x</u>ecute</span>
+        <div class="menu-dropdown" id="menu-execute">
+          <div class="menu-row" id="m-compile">
+            <span class="devcpp-compile-quad"><span class="q-blue"></span><span class="q-red"></span><span class="q-yellow"></span><span class="q-green"></span></span>
+            <span data-i18n="m_compile"><u>C</u>ompile</span> <kbd>F9</kbd>
+          </div>
+          <div class="menu-row" id="m-run">
+            <i class="fa-solid fa-play" style="color:#107c41;"></i>
+            <span data-i18n="m_run"><u>R</u>un</span> <kbd>F10</kbd>
+          </div>
+          <div class="menu-row" id="m-compile-run">
+            <span class="devcpp-compile-quad"><span class="q-blue"></span><span class="q-red"></span><span class="q-yellow"></span><span class="q-green"></span></span>
+            <i class="fa-solid fa-play" style="color:#107c41; margin-left:2px; font-size:10px;"></i>
+            <span data-i18n="m_compile_run">Compile &amp; <u>R</u>un</span> <kbd>F11</kbd>
+          </div>
+          <div class="menu-row" id="m-rebuild">
+            <i class="fa-solid fa-rotate" style="color:#0078d7;"></i>
+            <span data-i18n="m_rebuild">Rebuild All</span> <kbd>F12</kbd>
+          </div>
+          <div class="menu-divider"></div>
+          <div class="menu-row" id="m-tests">
+            <i class="fa-solid fa-vial" style="color:#7b1fa2;"></i>
+            <span data-i18n="m_tests">Run Testcases</span> <kbd>F8</kbd>
+          </div>
+          <div class="menu-row" id="m-stop">
+            <i class="fa-solid fa-square" style="color:#d9534f;"></i>
+            <span data-i18n="m_stop">Stop Execution</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item-wrap">
+        <span class="menu-item" data-menu="menu-tools" data-i18n="menu_tools"><u>T</u>ools</span>
+        <div class="menu-dropdown" id="menu-tools">
+          <div class="menu-row" id="m-tool-toggle-intellisense">
+            <i class="fa-solid fa-check" id="icon-check-intellisense"></i>
+            <span data-i18n="m_intellisense">Code Suggestions (IntelliSense)</span>
+            <kbd>Alt+I</kbd>
+          </div>
+          <div class="menu-divider"></div>
+          <div class="menu-row" id="m-lang-en">
+            <i class="fa-solid fa-check" id="icon-check-lang-en"></i>
+            <span data-i18n="m_lang_en">English (Default)</span>
+          </div>
+          <div class="menu-row" id="m-lang-vi">
+            <i class="fa-solid fa-check" id="icon-check-lang-vi" style="visibility:hidden;"></i>
+            <span data-i18n="m_lang_vi">Tiếng Việt</span>
+          </div>
+          <div class="menu-divider"></div>
+          <div class="menu-row" id="m-tool-dark"><span data-i18n="m_tool_dark">Theme: Dark</span></div>
+          <div class="menu-row" id="m-tool-classic"><span data-i18n="m_tool_classic">Theme: Classic 5.11</span></div>
+        </div>
+      </div>
+
+      <!-- Standard Win32 Window Menu (F18) -->
+      <div class="menu-item-wrap">
+        <span class="menu-item" data-menu="menu-window" data-i18n="menu_window"><u>W</u>indow</span>
+        <div class="menu-dropdown" id="menu-window">
+          <div class="menu-row" id="m-win-fullscreen">
+            <i class="fa-solid fa-expand"></i> <span data-i18n="m_win_fullscreen"><u>F</u>ull Screen</span> <kbd>F11 / Alt+Enter</kbd>
+          </div>
+          <div class="menu-row" id="m-win-close-all">
+            <i class="fa-solid fa-rectangle-xmark"></i> <span data-i18n="m_win_close_all"><u>C</u>lose All</span>
+          </div>
+          <div class="menu-divider" id="menu-win-divider"></div>
+          <div class="menu-window-file-list" id="menu-window-file-list">
+            <!-- Dynamically populated open files list with checkmarks -->
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-item-wrap">
+        <span class="menu-item" data-menu="menu-help" data-i18n="menu_help"><u>H</u>elp</span>
+        <div class="menu-dropdown" id="menu-help">
+          <div class="menu-row" id="m-about"><i class="fa-solid fa-circle-info"></i> <span data-i18n="m_about">About Dev-C++ 5.11 Web Edition</span></div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 3. Authentic Dual Dev-C++ Toolbars -->
+    <div class="devcpp-toolbar-container">
+      <!-- Toolbar Row 1: File & Edit -->
+      <div class="tb-row">
+        <button class="tb-btn" id="btn-new" title="New Source File (Ctrl+N)"><i class="fa-regular fa-file"></i></button>
+        <button class="tb-btn" id="btn-open" title="Open... (Ctrl+O)"><i class="fa-regular fa-folder-open" style="color:#dcb67a;"></i></button>
+        <button class="tb-btn" id="btn-save" title="Save (Ctrl+S)"><i class="fa-regular fa-floppy-disk" style="color:#0078d7;"></i></button>
+        <button class="tb-btn" id="btn-save-all" title="Save All"><i class="fa-solid fa-floppy-disk" style="color:#0078d7;"></i></button>
+        <button class="tb-btn" id="btn-download" title="Download Project (ZIP)"><i class="fa-solid fa-download"></i></button>
+        <input type="file" id="file-input" accept=".cpp,.c,.cc,.h,.hpp" style="display:none">
+        <span class="tb-separator"></span>
+        <button class="tb-btn" id="btn-undo" title="Undo (Ctrl+Z)"><i class="fa-solid fa-rotate-left"></i></button>
+        <button class="tb-btn" id="btn-redo" title="Redo (Ctrl+Y)"><i class="fa-solid fa-rotate-right"></i></button>
+        <button class="tb-btn" id="btn-cut" title="Cut (Ctrl+X)"><i class="fa-solid fa-scissors"></i></button>
+        <button class="tb-btn" id="btn-copy" title="Copy (Ctrl+C)"><i class="fa-regular fa-copy"></i></button>
+        <button class="tb-btn" id="btn-paste" title="Paste (Ctrl+V)"><i class="fa-regular fa-clipboard"></i></button>
+        <span class="tb-separator"></span>
+        <button class="tb-btn" id="btn-find" title="Find (Ctrl+F)"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <button class="tb-btn" id="btn-format" title="Format Code (AStyle / Shift+Alt+F)"><i class="fa-solid fa-align-left"></i> <span>AStyle</span></button>
+      </div>
+
+      <!-- Toolbar Row 2: Execute & Compiler Profile -->
+      <div class="tb-row">
+        <!-- Iconic 4-Quad Compile (F9) -->
+        <button class="tb-btn tb-action" id="btn-compile" title="Compile (F9)" data-i18n-title="tb_compile">
+          <span class="devcpp-compile-quad"><span class="q-blue"></span><span class="q-red"></span><span class="q-yellow"></span><span class="q-green"></span></span>
+          <span data-i18n="tb_compile_lbl">Compile</span> <span class="btn-shortcut">F9</span>
+        </button>
+
+        <!-- Green Play Run (F10) -->
+        <button class="tb-btn tb-action" id="btn-run" title="Run (F10)" data-i18n-title="tb_run">
+          <i class="fa-solid fa-play" style="color:#107c41;"></i>
+          <span data-i18n="tb_run_lbl">Run</span> <span class="btn-shortcut">F10</span>
+        </button>
+
+        <!-- 4-Quad + Green Play: Compile & Run (F11) -->
+        <button class="tb-btn tb-action tb-primary" id="btn-compile-run" title="Compile & Run (F11)" data-i18n-title="tb_compile_run">
+          <span class="devcpp-compile-quad"><span class="q-blue"></span><span class="q-red"></span><span class="q-yellow"></span><span class="q-green"></span></span>
+          <i class="fa-solid fa-play" style="color:#107c41; margin-left:2px; font-size:9px;"></i>
+          <span data-i18n="tb_compile_run_lbl">Compile &amp; Run</span> <span class="btn-shortcut">F11</span>
+        </button>
+
+        <!-- Rebuild All (F12) -->
+        <button class="tb-btn tb-action" id="btn-rebuild" title="Rebuild All (F12)" data-i18n-title="tb_rebuild">
+          <i class="fa-solid fa-rotate" style="color:#0078d7;"></i>
+          <span data-i18n="tb_rebuild_lbl">Rebuild</span> <span class="btn-shortcut">F12</span>
+        </button>
+
+        <!-- Run Tests (F8) -->
+        <button class="tb-btn tb-action" id="btn-run-tests" title="Run Testcases (F8)" data-i18n-title="tb_tests">
+          <i class="fa-solid fa-vial" style="color:#7b1fa2;"></i>
+          <span data-i18n="tb_tests_lbl">Test</span> <span class="btn-shortcut">F8</span>
+        </button>
+
+        <!-- Stop -->
+        <button class="tb-btn tb-action btn-stop" id="btn-stop" title="Stop" data-i18n-title="tb_stop">
+          <i class="fa-solid fa-square" style="color:#d9534f;"></i>
+        </button>
+
+        <span class="tb-separator"></span>
+
+        <!-- Compiler Profile -->
+        <div class="devcpp-combo-wrapper">
+          <select id="select-compiler" class="devcpp-combo" title="Compiler Profile" data-i18n-title="tb_compiler_profile">
+            <option value="tdm64">TDM-GCC 4.9.2 64-bit Release (Clang WASM)</option>
+            <option value="tdm32">TDM-GCC 4.9.2 32-bit Release</option>
+          </select>
+          <div class="devcpp-combo-menu" role="listbox" aria-label="Compiler Profile List"></div>
+        </div>
+
+        <span class="tb-separator"></span>
+
+        <!-- Theme Selector -->
+        <div class="devcpp-combo-wrapper">
+          <select id="select-theme" class="devcpp-combo" title="Theme" data-i18n-title="tb_theme">
+            <option value="classic" selected>Classic Dev-C++ 5.11</option>
+            <option value="dark">Dev-C++ Dark</option>
+            <option value="dracula">Dracula Theme</option>
+          </select>
+          <div class="devcpp-combo-menu" role="listbox" aria-label="Theme"></div>
+        </div>
+
+        <span class="tb-separator"></span>
+
+        <!-- Language Selector -->
+        <div class="devcpp-combo-wrapper">
+          <select id="select-language" class="devcpp-combo" title="Language" data-i18n-title="tb_language">
+            <option value="en" selected data-i18n="lang_opt_en">English (Default)</option>
+            <option value="vi" data-i18n="lang_opt_vi">Tiếng Việt</option>
+          </select>
+          <div class="devcpp-combo-menu" role="listbox" aria-label="Language Selector"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Main Workspace (Classic 3-Pane Layout) -->
+    <main class="devcpp-workspace">
+      
+      <!-- Left Sidebar: Authentic Project / Classes Manager -->
+      <aside class="devcpp-sidebar" id="devcpp-sidebar">
+        <!-- Sidebar Tab Bar -->
+        <div class="sidebar-tab-bar" role="tablist">
+          <div class="sidebar-tab active" id="sidebar-tab-project" data-view="project" role="tab" aria-selected="true" title="Project Files" data-i18n-title="sb_tab_project_tt">
+            <i class="fa-regular fa-folder"></i> <span data-i18n="sb_tab_project">Project</span>
+          </div>
+          <div class="sidebar-tab" id="sidebar-tab-classes" data-view="classes" role="tab" aria-selected="false" title="Class Hierarchy" data-i18n-title="sb_tab_classes_tt">
+            <i class="fa-solid fa-tags"></i> <span data-i18n="sb_tab_classes">Classes</span>
+          </div>
+        </div>
+
+        <!-- Sidebar Mini-Toolbar: Win32 Beveled Action Strip -->
+        <div class="sidebar-mini-toolbar" id="sidebar-mini-toolbar" role="toolbar" aria-label="Project Management Toolbar">
+          <button type="button" class="sb-tb-btn btn-sidebar-new" id="sb-btn-new-file" title="New file (.cpp, .h, .c) [Alt+N]" data-i18n-title="sb_btn_new_file">
+            <i class="fa-solid fa-file-circle-plus"></i>
+          </button>
+          <button type="button" class="sb-tb-btn btn-sidebar-folder" id="sb-btn-new-folder" title="New folder" data-i18n-title="sb_btn_new_folder">
+            <i class="fa-solid fa-folder-plus"></i>
+          </button>
+          <button type="button" class="sb-tb-btn" id="sb-btn-delete" title="Delete selected item (Delete)" data-i18n-title="sb_btn_delete">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+          <div class="sb-tb-separator"></div>
+          <button type="button" class="sb-tb-btn" id="sb-btn-toggle-unit" title="Toggle Project Unit (Include/Exclude from Build)" data-i18n-title="sb_btn_toggle_unit">
+            <i class="fa-solid fa-cube"></i>
+          </button>
+          <button type="button" class="sb-tb-btn" id="sb-btn-collapse-all" title="Collapse all folders" data-i18n-title="sb_btn_collapse_all">
+            <i class="fa-solid fa-compress"></i>
+          </button>
+        </div>
+
+        <!-- Dynamic VFS Project Tree Container -->
+        <div class="project-tree-container" id="project-tree-container">
+          <div class="project-tree" id="project-tree" tabindex="0" role="tree" aria-label="Dev-C++ Project Tree">
+            <!-- Dynamically populated by VFSSidebarController.renderTree() -->
+          </div>
+        </div>
+      </aside>
+
+      <!-- Resizable Sidebar Splitter -->
+      <div class="splitter-sidebar" id="splitter-sidebar"></div>
+
+      <!-- Center: Editor & Bottom Dock Stack -->
+      <div class="devcpp-workspace-center" id="devcpp-workspace-center">
+
+        <!-- Top: Monaco Editor Pane -->
+        <section class="pane left-pane editor-pane" id="left-pane">
+          <div class="tab-bar editor-tab-bar" id="editor-tabs">
+            <div class="tab-list" id="editor-tab-list">
+              <div class="tab active" data-file="main.cpp">
+                <i class="fa-regular fa-file-code" style="color:#0078d7; font-size:11px;"></i>
+                <span class="tab-name">main.cpp</span>
+              </div>
+            </div>
+            <button class="btn-tab-add" id="btn-add-file" title="New file tab (+)" data-i18n-title="tab_add"><i class="fa-solid fa-plus"></i></button>
+          </div>
+          <div class="editor-container">
+            <div id="monaco-editor"></div>
+          </div>
+        </section>
+
+        <!-- Horizontal Resizable Splitter -->
+        <div class="splitter-bottom" id="splitter-bottom" title="Drag to resize Bottom Dock, double-click to toggle" data-i18n-title="splitter_bottom_tt"></div>
+
+        <!-- Bottom: Dev-C++ Bottom Dock Panel -->
+        <section class="pane right-pane devcpp-bottom-dock" id="devcpp-bottom-dock" data-alias="right-pane">
+          
+          <!-- Bottom Dock Tab Bar -->
+          <div class="dock-tab-bar tab-bar" id="dock-tab-bar" role="tablist">
+            <div class="dock-tabs-left">
+              <!-- Tab 1: Compiler Log -->
+              <div class="dock-tab tab" id="tab-dock-compiler-log" data-target="panel-log" data-alias-id="tab-nav-log" role="tab" aria-selected="false" title="Compiler build output log" data-i18n-title="dock_tab_compiler_log_tt">
+                <i class="fa-solid fa-list-check"></i>
+                <span class="dock-tab-title" data-i18n="dock_tab_compiler_log">Compiler Log</span>
+              </div>
+
+              <!-- Tab 2: Error List (Active by default so diagnostic table is immediately visible) -->
+              <div class="dock-tab tab active" id="tab-dock-error-list" data-target="panel-error-list" role="tab" aria-selected="true" title="Diagnostics and syntax error list" data-i18n-title="dock_tab_error_list_tt">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span class="dock-tab-title" data-i18n="dock_tab_error_list">Error List</span>
+                <span class="tab-badge" id="log-badge" style="display:none;">0</span>
+              </div>
+
+              <!-- Tab 3: Testcases -->
+              <div class="dock-tab tab" id="tab-dock-testcases" data-target="panel-tests" data-alias-id="tab-nav-tests" role="tab" aria-selected="false" title="Automated testcase runner" data-i18n-title="dock_tab_testcases_tt">
+                <i class="fa-solid fa-vial"></i>
+                <span class="dock-tab-title" data-i18n="dock_tab_testcases">Testcases</span>
+                <span class="tab-badge" id="test-badge">0/0</span>
+              </div>
+
+              <!-- Tab 4: Resources -->
+              <div class="dock-tab tab" id="tab-dock-resources" data-target="panel-resources" role="tab" aria-selected="false" title="Win32 resources and application manifest" data-i18n-title="dock_tab_resources_tt">
+                <i class="fa-solid fa-cubes"></i>
+                <span class="dock-tab-title" data-i18n="dock_tab_resources">Resources</span>
+              </div>
+
+              <!-- Hidden Compatibility Tabs for Legacy Selectors -->
+              <div class="dock-tab tab compat-tab" id="tab-nav-console" data-target="panel-console" style="display:none;" aria-hidden="true">
+                <i class="fa-solid fa-terminal"></i> Console
+              </div>
+              <div class="dock-tab tab compat-tab" id="tab-nav-stdin" data-target="panel-stdin" style="display:none;" aria-hidden="true">
+                <i class="fa-solid fa-keyboard"></i> Input
+              </div>
+            </div>
+
+            <!-- Dock Window Controls -->
+            <div class="dock-tabs-right">
+              <button type="button" class="btn-dock-ctrl" id="btn-dock-toggle" title="Toggle Bottom Dock" data-i18n-title="dock_toggle_tt">
+                <i class="fa-solid fa-chevron-down" id="icon-dock-toggle"></i>
+              </button>
+              <button type="button" class="btn-dock-ctrl" id="btn-dock-close" title="Close Bottom Dock" data-i18n-title="dock_close_tt">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Bottom Dock Panels Wrapper -->
+          <div class="dock-panels-wrapper" id="dock-panels-wrapper">
+            
+            <!-- Panel 1: Compiler Log (Raw Output) -->
+            <div class="panel-content" id="panel-log" role="tabpanel" aria-labelledby="tab-dock-compiler-log">
+              <div class="compiler-log-container">
+                <div class="compiler-log-toolbar">
+                  <div class="compiler-log-status">
+                    <i class="fa-solid fa-terminal"></i>
+                    <span data-i18n="dock_log_header">Compiler: TDM-GCC 4.9.2 64-bit Release (WASM Clang Toolchain)</span>
+                  </div>
+                  <div class="toolbar-group">
+                    <button type="button" class="btn-subtle" id="btn-copy-log" title="Copy full build log" data-i18n-title="dock_copy_log_tt"><i class="fa-regular fa-copy"></i> <span data-i18n="dock_copy_log">Copy</span></button>
+                    <button type="button" class="btn-subtle" id="btn-clear-log" title="Clear build log" data-i18n-title="dock_clear_log_tt"><i class="fa-solid fa-trash-can"></i> <span data-i18n="dock_clear_log">Clear</span></button>
+                  </div>
+                </div>
+                <div class="raw-log-output" id="raw-log-output" role="log" aria-live="polite" data-i18n="dock_log_ready">Compiler Ready. Ready to compile (F9 / F11).</div>
+              </div>
+            </div>
+
+            <!-- Panel 2: Resources Panel -->
+            <div class="panel-content" id="panel-resources" role="tabpanel" aria-labelledby="tab-dock-resources">
+              <div class="resources-container">
+                <div class="resources-info-bar">
+                  <i class="fa-solid fa-circle-info" style="color:var(--accent-primary);"></i>
+                  <span data-i18n="res_info_bar">Windows Application Resources &amp; Manifest:</span>
+                </div>
+                <div class="resources-table-wrapper">
+                  <table class="win32-grid-table">
+                    <thead>
+                      <tr>
+                        <th style="width:160px;" data-i18n="res_th_prop">Property</th>
+                        <th data-i18n="res_th_val">Current Value</th>
+                        <th style="width:140px;" data-i18n="res_th_status">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><strong data-i18n="res_script_name">Resource Script</strong></td>
+                        <td data-i18n="res_script_val">None (Project1.rc)</td>
+                        <td><span class="badge-status pending" data-i18n="res_script_status">Default</span></td>
+                      </tr>
+                      <tr>
+                        <td><strong data-i18n="res_icon_name">Application Icon</strong></td>
+                        <td data-i18n="res_icon_val">IDI_ICON1 (Default Dev-C++ 5.11 Icon)</td>
+                        <td><span class="badge-status ac" data-i18n="res_icon_status">Loaded</span></td>
+                      </tr>
+                      <tr>
+                        <td><strong data-i18n="res_exec_name">Execution Level</strong></td>
+                        <td data-i18n="res_exec_val">asInvoker (Standard User Privileges)</td>
+                        <td><span class="badge-status ac" data-i18n="res_exec_status">Valid</span></td>
+                      </tr>
+                      <tr>
+                        <td><strong data-i18n="res_comp_name">Resource Compiler</strong></td>
+                        <td data-i18n="res_comp_val">windres.exe (GNU-Win32 Resource Compiler)</td>
+                        <td><span class="badge-status ac" data-i18n="res_comp_status">Ready</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 3: Testcases Panel -->
+            <div class="panel-content" id="panel-tests" role="tabpanel" aria-labelledby="tab-dock-testcases">
+              <div class="testcases-container">
+                <div class="testcases-header">
+                  <div class="test-summary">
+                    <span data-i18n="test_summary_title">Automated Test Runner:</span>
+                    <span id="test-summary-stats" style="color:var(--text-muted);" data-i18n="test_summary_unrun">Not run yet</span>
+                  </div>
+                  <div class="toolbar-group">
+                    <button type="button" class="btn-tool" id="btn-add-testcase" style="font-size:11px; padding:3px 8px;">
+                      <i class="fa-solid fa-plus"></i> <span data-i18n="btn_add_test">Add Test</span>
+                    </button>
+                    <button type="button" class="btn-tool" id="btn-reset-testcases" style="font-size:11px; padding:3px 8px;">
+                      <i class="fa-solid fa-rotate-right"></i> <span data-i18n="btn_reset_tests">Reset Samples</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="testcase-list" id="testcases-list">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Panel 4: Error List (Structured Diagnostics Table) - ACTIVE by default -->
+            <div class="panel-content active" id="panel-error-list" role="tabpanel" aria-labelledby="tab-dock-error-list">
+              <div class="error-list-container">
+                <div class="error-list-toolbar">
+                  <div class="error-list-summary">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <span id="error-list-summary-text" data-i18n="err_summary_zero">0 Errors, 0 Warnings</span>
+                  </div>
+                  <div class="error-list-filters">
+                    <button type="button" class="btn-subtle active" id="btn-err-filter-all" title="Show all messages" data-i18n-title="err_filter_all_tt">
+                      <i class="fa-solid fa-list"></i> <span data-i18n="err_filter_all">All</span>
+                    </button>
+                    <button type="button" class="btn-subtle" id="btn-err-filter-errors" title="Show compilation errors only" data-i18n-title="err_filter_errors_tt">
+                      <i class="fa-solid fa-circle-xmark" style="color: #f87171;"></i> <span>Errors (<span id="count-errors">0</span>)</span>
+                    </button>
+                    <button type="button" class="btn-subtle" id="btn-err-filter-warnings" title="Show warnings only" data-i18n-title="err_filter_warnings_tt">
+                      <i class="fa-solid fa-triangle-exclamation" style="color: #fbbf24;"></i> <span>Warnings (<span id="count-warnings">0</span>)</span>
+                    </button>
+                  </div>
+                </div>
+                <div class="error-list-table-wrapper">
+                  <table class="log-table error-list-table" id="error-list-table" data-alias="log-table">
+                    <thead>
+                      <tr>
+                        <th style="width:75px;" class="col-severity" data-i18n="col_severity">Severity</th>
+                        <th style="width:140px;" class="col-unit" data-i18n="col_unit">File / Unit</th>
+                        <th style="width:60px;" class="col-line" data-i18n="col_line">Line</th>
+                        <th style="width:60px;" class="col-col" data-i18n="col_col">Col</th>
+                        <th class="col-message" data-i18n="col_message">Diagnostic Message</th>
+                      </tr>
+                    </thead>
+                    <tbody id="log-table-body" data-alias="error-list-body">
+                      <tr class="empty-row">
+                        <td colspan="5" class="empty-message" style="text-align:center; color:var(--text-muted); padding:20px;" data-i18n="err_empty_msg">
+                          No compilation errors.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Compatibility Container for Legacy Panels -->
+            <div class="panel-content compat-panel" id="panel-console" style="display:none;" aria-hidden="true"></div>
+            <div class="panel-content compat-panel" id="panel-stdin" style="display:none;" aria-hidden="true">
+              <textarea id="stdin-input" class="stdin-textarea" style="display:none;"></textarea>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Hidden Splitter Shim for Legacy Code -->
+        <div id="splitter" style="display:none;" aria-hidden="true"></div>
+        <div id="right-pane" style="display:none;" aria-hidden="true"></div>
+        <table class="log-table" id="log-table" style="display:none;" aria-hidden="true"></table>
+
+      </div>
+
+    </main>
+
+    <!-- 4. Authentic Sunken Beveled Win32 Status Bar (7 Panels) -->
+    <footer class="devcpp-statusbar">
+      <!-- Panel 1: Message & Status Dot (flex: 1) -->
+      <div class="status-panel status-panel-msg" id="status-panel-main">
+        <span class="status-dot ready" id="status-dot"></span>
+        <span id="status-text" data-i18n="status_loading">Loading compiler...</span>
+      </div>
+
+      <!-- Panel 2: Cursor Position (Line / Col) -->
+      <div class="status-panel status-panel-pos" id="cursor-pos" title="Cursor Line & Column" data-i18n-title="status_pos_tt">Line: 1, Col: 1</div>
+
+      <!-- Panel 3: File Path -->
+      <div class="status-panel status-panel-path" id="editor-file-path" title="Current source file path" data-i18n-title="status_path_tt">main.cpp</div>
+
+      <!-- Panel 4: Encoding & Document Info -->
+      <div class="status-panel status-panel-encoding" id="editor-encoding" title="Character encoding (UTF-8)" data-i18n-title="status_encoding_tt">
+        <span>UTF-8</span>
+        <!-- Backwards compatibility hooks for existing script references -->
+        <span id="editor-lines" style="display:none;">Lines: 1</span>
+        <span id="editor-length" style="display:none;">Length: 0</span>
+      </div>
+
+      <!-- Panel 5: Insert / Overwrite Mode (Interactive Toggle) -->
+      <div class="status-panel status-panel-mode" id="editor-ins-mode" title="Input mode: Insert or Overwrite (Click to toggle)" data-i18n-title="status_mode_tt">Insert</div>
+
+      <!-- Panel 6: Read / Write State -->
+      <div class="status-panel status-panel-rw" id="editor-rw-mode" title="Read / Write status" data-i18n-title="status_rw_tt">Read / Write</div>
+
+      <!-- Panel 7: Compiler Profile -->
+      <div class="status-panel status-panel-compiler" id="status-compiler" title="Current compiler profile" data-i18n-title="status_compiler_tt">TDM-GCC 4.9.2 64-bit</div>
+    </footer>
+
+  </div>
+
+  <!-- Win32 Right-Click Context Menu for VFS Tree -->
+  <div class="win32-context-menu" id="vfs-context-menu" style="display:none;" role="menu">
+    <div class="win32-menu-gutter"></div>
+    <div class="win32-menu-items" id="vfs-context-menu-items">
+      <!-- Items dynamically populated based on target node -->
+    </div>
+  </div>
+
+  <!-- Win32 Modal Dialog: Project Options -->
+  <div class="win32-dialog-overlay" id="dialog-project-options-overlay" style="display:none;">
+    <div class="win32-dialog-box" id="dialog-project-options" role="dialog" aria-modal="true" aria-labelledby="dlg-proj-title">
+      <div class="win32-dialog-titlebar">
+        <div class="win32-dialog-title-left">
+          <i class="fa-solid fa-sliders" style="color:#0078d7;"></i>
+          <span id="dlg-proj-title">Project Options - Project1</span>
+        </div>
+        <button type="button" class="win32-dialog-close" id="dlg-proj-btn-close" title="Close">✕</button>
+      </div>
+      <div class="win32-dialog-body">
+        <div class="win32-dialog-tabs">
+          <button type="button" class="win32-tab-btn active" data-tab="general" data-i18n="dlg_tab_general">General</button>
+          <button type="button" class="win32-tab-btn" data-tab="files" data-i18n="dlg_tab_files">Files / Units</button>
+          <button type="button" class="win32-tab-btn" data-tab="compiler" data-i18n="dlg_tab_compiler">Compiler</button>
+        </div>
+        <div class="win32-tab-pane active" id="dlg-pane-general">
+          <fieldset class="win32-fieldset">
+            <legend data-i18n="dlg_proj_details">Project Details</legend>
+            <div class="win32-form-row">
+              <label for="dlg-proj-input-name" data-i18n="dlg_proj_name">Project Name:</label>
+              <input type="text" id="dlg-proj-input-name" class="win32-input" value="Project1">
+            </div>
+            <div class="win32-form-row">
+              <label data-i18n="dlg_proj_target">Target Executable:</label>
+              <input type="text" class="win32-input" value="Project1.exe (WASM Binary)" readonly>
+            </div>
+            <div class="win32-form-row">
+              <label data-i18n="dlg_proj_type">Project Type:</label>
+              <input type="text" class="win32-input" value="Win32 Console Application (C++)" readonly>
+            </div>
+          </fieldset>
+        </div>
+        <div class="win32-tab-pane" id="dlg-pane-files">
+          <fieldset class="win32-fieldset">
+            <legend data-i18n="dlg_proj_units">Included Project Units</legend>
+            <div class="win32-unit-list-box" id="dlg-proj-unit-list" style="max-height:160px; overflow-y:auto;">
+              <!-- Dynamically populated unit list with checkboxes -->
+            </div>
+          </fieldset>
+        </div>
+        <div class="win32-tab-pane" id="dlg-pane-compiler">
+          <fieldset class="win32-fieldset">
+            <legend data-i18n="dlg_compiler_settings">Compiler Settings</legend>
+            <div class="win32-form-row">
+              <label data-i18n="dlg_compiler_version">Compiler Version:</label>
+              <input type="text" class="win32-input" value="TDM-GCC 4.9.2 (Clang 8.0.1 WASM)" readonly>
+            </div>
+            <div class="win32-form-row">
+              <label data-i18n="dlg_cpp_standard">C++ Standard:</label>
+              <select class="win32-select">
+                <option value="c++11" selected>ISO C++11</option>
+                <option value="c++14">ISO C++14</option>
+                <option value="c++98">ISO C++98</option>
+              </select>
+            </div>
+            <div class="win32-form-row">
+              <label data-i18n="dlg_optimization">Optimization:</label>
+              <select class="win32-select">
+                <option value="2" selected>-O2 (Fast Execution)</option>
+                <option value="0">-O0 (No Optimization)</option>
+                <option value="3">-O3 (Aggressive)</option>
+              </select>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+      <div class="win32-dialog-footer">
+        <button type="button" class="win32-btn win32-btn-primary" id="dlg-proj-btn-ok" data-i18n="dlg_btn_ok">OK</button>
+        <button type="button" class="win32-btn" id="dlg-proj-btn-cancel" data-i18n="dlg_btn_cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Win32 Modal Input Dialog: New File / Folder / Rename -->
+  <div class="win32-dialog-overlay" id="dialog-vfs-input-overlay" style="display:none;">
+    <div class="win32-dialog-box win32-input-dialog" id="dialog-vfs-input" role="dialog" aria-modal="true">
+      <div class="win32-dialog-titlebar">
+        <div class="win32-dialog-title-left">
+          <i class="fa-solid fa-pen-to-square" style="color:#0078d7;" id="dlg-input-icon"></i>
+          <span id="dlg-input-title">New File</span>
+        </div>
+        <button type="button" class="win32-dialog-close" id="dlg-input-btn-close">✕</button>
+      </div>
+      <div class="win32-dialog-body">
+        <label id="dlg-input-prompt" for="dlg-input-val" data-i18n="dlg_new_file_prompt">New file name (e.g. calc.cpp, utils.h):</label>
+        <input type="text" id="dlg-input-val" class="win32-input" autocomplete="off" spellcheck="false">
+        <div class="win32-input-error" id="dlg-input-error" style="display:none;"></div>
+      </div>
+      <div class="win32-dialog-footer">
+        <button type="button" class="win32-btn win32-btn-primary" id="dlg-input-btn-ok" data-i18n="dlg_btn_ok">OK</button>
+        <button type="button" class="win32-btn" id="dlg-input-btn-cancel" data-i18n="dlg_btn_cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Win32 Modal Alert Dialog: Dev-C++ 5.11 Warning (Feature F19)
+       ========================================================================== -->
+  <div class="win32-dialog-overlay" id="dialog-alert-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="dlg-alert-title">
+    <div class="win32-dialog-box win32-alert-dialog" id="dialog-win32-alert">
+      <div class="win32-dialog-titlebar">
+        <div class="win32-dialog-title-left">
+          <i class="fa-solid fa-triangle-exclamation" style="color:#d97706;" id="dlg-alert-title-icon"></i>
+          <span id="dlg-alert-title">Dev-C++ 5.11</span>
+        </div>
+        <button type="button" class="win32-dialog-close" id="dlg-alert-btn-close" title="Close (Esc)">✕</button>
+      </div>
+      <div class="win32-dialog-body win32-alert-body">
+        <div class="win32-alert-icon-col">
+          <div class="win32-msgbox-icon-warning">
+            <i class="fa-solid fa-circle-exclamation"></i>
+          </div>
+        </div>
+        <div class="win32-alert-content-col">
+          <div class="win32-alert-message" id="dlg-alert-message" data-i18n="alert_uncompiled">
+            Project has not been compiled yet, please press F9 or F11 first
+          </div>
+        </div>
+      </div>
+      <div class="win32-dialog-footer win32-alert-footer">
+        <button type="button" class="win32-btn win32-btn-primary" id="dlg-alert-btn-ok">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Splash Screen / Initial Download Progress -->
+  <div class="splash-overlay" id="splash-overlay" style="display:none;">
+    <div class="splash-box">
+      <div class="splash-logo"><i class="fa-solid fa-microchip"></i></div>
+      <div class="splash-title" data-i18n="splash_title">Dev-C++ Web Edition</div>
+      <div class="splash-desc" data-i18n-html="splash_desc">
+        Loading <strong>Clang Compiler &amp; C++ STL</strong> into browser.<br>
+        <em>Data is saved automatically to your browser (IndexedDB), instant access on next visit!</em>
+      </div>
+      <div class="progress-container">
+        <div class="progress-bar" id="splash-progress-bar"></div>
+      </div>
+      <div class="splash-status" id="splash-status-text" data-i18n="splash_init">Initializing compiler environment...</div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Win32 Pop-up cmd.exe Console Window (Floating & Draggable)
+       ========================================================================== -->
+  <div id="win32-cmd-window" class="win32-cmd-window" style="display:none;" role="dialog" aria-modal="false" aria-label="Command Prompt">
+    <!-- Win32 Titlebar (Draggable Handle) -->
+    <div class="cmd-titlebar" id="cmd-titlebar">
+      <div class="cmd-title-left">
+        <span class="cmd-icon" title="Command Prompt"><span class="cmd-icon-prompt">C:\_</span></span>
+        <span class="cmd-title win32-title" id="cmd-title-text">C:\Projects\Project1\Project1.exe</span>
+      </div>
+      <div class="cmd-title-right">
+        <button type="button" class="cmd-title-btn cmd-btn-min" id="btn-cmd-min" title="Minimize">─</button>
+        <button type="button" class="cmd-title-btn cmd-btn-max" id="btn-cmd-max" title="Maximize">□</button>
+        <button type="button" class="cmd-title-btn cmd-btn-close win-close" id="btn-cmd-close" title="Close (Alt+F4)">✕</button>
+      </div>
+    </div>
+
+    <!-- Terminal Body Container -->
+    <div class="cmd-body" id="cmd-body">
+      <!-- Terminal Subheader Bar (Compact) -->
+      <div class="terminal-bar" id="terminal-bar" style="display:none;">
+        <div class="terminal-bar-left">
+          <span class="term-status-chip ready" id="term-status-chip">
+            <span class="status-pulse-dot"></span>
+            <span id="term-status-label">Console</span>
+          </span>
+        </div>
+        <div class="terminal-bar-right">
+          <button class="btn-subtle" id="btn-copy-term" title="Copy full text from Console" data-i18n-title="cmd_copy_tt"><i class="fa-regular fa-copy"></i></button>
+          <button class="btn-subtle" id="btn-clear-term" title="Clear Console screen" data-i18n-title="cmd_clear_tt"><i class="fa-solid fa-trash-can"></i></button>
+          <button class="btn-subtle" id="btn-input-eof" title="Send EOF signal (Ctrl+D)" data-i18n-title="cmd_eof_tt">EOF</button>
+        </div>
+      </div>
+      <div class="terminal-wrapper" id="terminal-wrapper">
+        <div id="xterm-container"></div>
+      </div>
+      <div class="terminal-input-bar hidden-bridge" id="terminal-input-bar" style="display:none !important;">
+        <span id="input-status-tag" style="display:none;"></span>
+        <input type="text" id="terminal-interactive-input" style="display:none;">
+        <button id="btn-send-input" style="display:none;"></button>
+      </div>
+    </div>
+
+    <!-- 8-Directional Resizing Handles -->
+    <div class="cmd-resize-handle cmd-resize-n" data-dir="n"></div>
+    <div class="cmd-resize-handle cmd-resize-s" data-dir="s"></div>
+    <div class="cmd-resize-handle cmd-resize-e" data-dir="e"></div>
+    <div class="cmd-resize-handle cmd-resize-w" data-dir="w"></div>
+    <div class="cmd-resize-handle cmd-resize-nw" data-dir="nw"></div>
+    <div class="cmd-resize-handle cmd-resize-ne" data-dir="ne"></div>
+    <div class="cmd-resize-handle cmd-resize-sw" data-dir="sw"></div>
+    <div class="cmd-resize-handle cmd-resize-se" data-dir="se"></div>
+  </div>
+
+  <!-- Scripts -->
+  <!-- 0. JSZip Library for Dev-C++ Project Zip Import/Export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+  <!-- 1. xterm.js & Fit Addon (Load first before any AMD loader) -->
+  <script src="https://cdn.jsdelivr.net/npm/xterm@5.3.0/lib/xterm.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xterm-addon-fit@0.8.0/lib/xterm-addon-fit.min.js"></script>
+
+  <!-- 2. Internationalization (i18n) Engine -->
+  <script src="js/i18n.js"></script>
+
+  <!-- 3. Preset Code Templates -->
+  <script src="js/templates.js"></script>
+
+  <!-- 3. Virtual File System Core -->
+  <script src="js/vfs.js"></script>
+
+  <!-- 4. Monaco Editor AMD Loader -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
+
+  <!-- 5. Intelligent C/C++ Code Assistance & Autocomplete Engine -->
+  <script src="js/intellisense.js"></script>
+
+  <!-- 6. App Logic -->
+  <script src="js/app.js?v=2.1.0"></script>
+</body>
+</html>

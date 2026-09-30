@@ -1,0 +1,13 @@
+# Dev-C++ Web Apache Configuration
+<IfModule mod_mime.c>
+    AddType application/wasm .wasm
+    AddType application/wasm clang lld memfs
+    AddType application/x-tar .tar
+</IfModule>
+
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    # Support for SharedArrayBuffer if enabled
+    Header set Cross-Origin-Opener-Policy "same-origin"
+    Header set Cross-Origin-Embedder-Policy "require-corp"
+</IfModule>

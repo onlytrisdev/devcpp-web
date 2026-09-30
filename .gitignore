@@ -1,0 +1,33 @@
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# Editor & IDE Directories
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Temporary & Log Files
+*.log
+*.tmp
+*.bak
+scratch/
+
+# Python & Node Artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
