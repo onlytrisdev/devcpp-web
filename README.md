@@ -1,5 +1,6 @@
 # Dev-C++ Web Edition
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-brightgreen.svg?style=flat-square)](https://onlytrisdev.github.io/devcpp-web/)
 [![WebAssembly](https://img.shields.io/badge/WebAssembly-WASM-654FF0.svg?style=flat-square)](https://webassembly.org/)
 [![Compiler](https://img.shields.io/badge/Compiler-LLVM%20Clang%208.0.1-blue.svg?style=flat-square)](https://clang.llvm.org/)
 [![C++ Standard](https://img.shields.io/badge/C%2B%2B%20Standard-C%2B%2B17%20%7C%20C%2B%2B14%20%7C%20C%2B%2B11-orange.svg?style=flat-square)](https://en.cppreference.com/)
@@ -220,7 +221,7 @@ Because Dev-C++ Web Edition operates entirely on the client side, it can be host
 ### Option 1: Python Local Server
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/devcpp-web.git
+git clone https://github.com/onlytrisdev/devcpp-web.git
 cd devcpp-web
 
 # Start local HTTP server
